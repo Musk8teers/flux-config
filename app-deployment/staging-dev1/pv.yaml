@@ -1,0 +1,21 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  labels:
+    container.training/pv: ""
+  name: postgresql-data
+  namespace: staging-dev1
+spec:
+  accessModes:
+  - ReadWriteOnce
+  - ReadWriteMany
+  capacity:
+    storage: 1Gi
+  hostPath:
+    path: /tmp/my-pv2
+  #storageClassName: my-sc
+  #claimRef:
+  #  kind: PersistentVolumeClaim
+  #  apiVersion: v1
+  #  namespace: default
+  #  name: my-pvc-XYZ45
