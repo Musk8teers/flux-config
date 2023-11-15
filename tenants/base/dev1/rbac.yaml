@@ -1,0 +1,20 @@
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: dev1-sa
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: dev1-reconciler
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: dev1-full-access
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: gotk:dev1:reconciler
+- kind: ServiceAccount
+  name: dev1-sa

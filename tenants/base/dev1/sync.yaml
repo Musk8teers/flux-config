@@ -1,0 +1,23 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: dev1-spring-music
+spec:
+  interval: 30s
+  ref:
+    branch: main
+  url: https://github.com/musk8teers/flux-config
+
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: dev1-spring-music
+spec:
+  interval: 30s
+  path: ./app-deployment/myEnv-dev1
+  prune: false
+  sourceRef:
+    kind: GitRepository
+    name: dev1-spring-music

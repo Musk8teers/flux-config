@@ -1,0 +1,11 @@
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: dev1-reconciler
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: gotk:staging-dev1:reconciler
+- kind: ServiceAccount
+  name: staging-dev1-sa
