@@ -1,0 +1,24 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: flux2-monitoring
+  namespace: monitoring
+spec:
+  interval: 1m0s
+  ref:
+    branch: main
+  url: https://github.com/musk8teers/flux2-monitoring
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: kube-prometheus-stack
+  namespace: monitoring
+spec:
+  interval: 1m0s
+  path: ./monitoring/controllers/kube-prometheus-stack/
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux2-monitoring
